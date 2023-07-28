@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b21424t0wmbk0"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_lenqg"]
+[ext_resource type="Script" path="res://mats/Camera3DMovement.gd" id="2_6ijyd"]
+[ext_resource type="Material" uid="uid://c0m15scsh0i1j" path="res://mats/ground.tres" id="3_dro7h"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8r34k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq445"]
+transparency = 1
+albedo_color = Color(0, 0.14902, 1, 0.380392)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_lenqg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.872232, 0.489093, 0, -0.489093, 0.872232, 0, 22.7792, 66.4155)
+script = ExtResource("2_6ijyd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.92243, 0.0469612, 0.383298, -0.382656, -0.022315, 0.923621, 0.0519276, -0.998647, -0.00261401, 0, 6.8024, 0)
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 8.8, 0)
+mesh = SubResource("PlaneMesh_8r34k")
+surface_material_override/0 = SubResource("StandardMaterial3D_mq445")
+
+[node name="Underground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -178.069, 0)
+mesh = SubResource("PlaneMesh_8r34k")
+surface_material_override/0 = ExtResource("3_dro7h")

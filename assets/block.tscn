@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0dn6ri1j8741"]
+
+[ext_resource type="Material" uid="uid://c0m15scsh0i1j" path="res://mats/ground.tres" id="1_adl22"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uiq13"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lt5cs"]
+
+[node name="Block" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_uiq13")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_lt5cs")
+surface_material_override/0 = ExtResource("1_adl22")
