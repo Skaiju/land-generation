@@ -10,15 +10,15 @@
 transparency = 1
 albedo_color = Color(0, 0.14902, 1, 0.380392)
 
-[node name="Node3D" type="Node3D"]
+[node name="Game" type="Node3D"]
 script = ExtResource("1_lenqg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.872232, 0.489093, 0, -0.489093, 0.872232, 0, 22.7792, 66.4155)
+transform = Transform3D(0.842123, 0.263761, -0.470382, 0, 0.872232, 0.489093, 0.539285, -0.411876, 0.734527, -159.157, 127.582, 247.181)
+projection = 2
+current = true
+near = 2.683
 script = ExtResource("2_6ijyd")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.92243, 0.0469612, 0.383298, -0.382656, -0.022315, 0.923621, 0.0519276, -0.998647, -0.00261401, 0, 6.8024, 0)
 
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 8.8, 0)
@@ -29,3 +29,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mq445")
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -178.069, 0)
 mesh = SubResource("PlaneMesh_8r34k")
 surface_material_override/0 = ExtResource("3_dro7h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.812881, -0.0074371, -0.582382, 0.565873, -0.226634, 0.792732, -0.137883, -0.973952, -0.180018, 0, 316.222, 0)
+light_color = Color(1, 0.92549, 0.501961, 1)
+shadow_enabled = true
+shadow_opacity = 0.7
