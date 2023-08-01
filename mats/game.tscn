@@ -33,4 +33,4 @@ shadow_opacity = 0.7
 script = ExtResource("3_42bbj")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.951116, 0.308834, 0, -0.308834, 0.951116, 0, 50, 150)
+transform = Transform3D(1, 0, 0, 0, 0.918073, 0.396411, 0, -0.396411, 0.918073, 0, 24.074, 56.825)
