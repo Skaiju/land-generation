@@ -6,6 +6,7 @@ const sand:= preload("res://mats/ground_sand.tres")
 func _ready():
 	gen_map()
 
+
 func gen_map():
 	var size = 400
 	var offset = randi() % 1000
@@ -20,12 +21,15 @@ func gen_map():
 			
 			var this_block = block.instantiate()
 			var noise_height = fast_noise.get_noise_2d(offset+scale*i,offset+scale*j)
+			var mod_height = ((floor(noise_height * 10) - (int(noise_height * 10) % 4))) / 10
+			
+			#print(mod_height)
 			this_block.position = Vector3(
 				i,
 				floor(
 					20 *  (
 						f(Vector2(i, j).length())
-						 + 0.50 * noise_height
+						 + 0.20 * mod_height
 					) 
 				),
 				j
