@@ -6,7 +6,6 @@
 size = Vector3(0.997596, 0.39326, 0.993216)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lt5cs"]
-size = Vector3(1, 0.2, 1)
 
 [node name="Block" type="StaticBody3D"]
 

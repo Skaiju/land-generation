@@ -13,7 +13,7 @@ func gen_map():
 	
 	
 	var fast_noise = FastNoiseLite.new()
-	var size = 150
+	var size = 350
 	var offset = randi() % 1000
 	var scale: float = 1.2
 	var amplitude: float = 20
@@ -36,16 +36,18 @@ func gen_map():
 				j
 			)
 					
-#			if this_block.position.y < 11:
-#				(this_block.get_node("MeshInstance3D") as MeshInstance3D).set_surface_override_material(0, sand)
-#			else:
-#				var tree_scale = 0.4
-#				var h = fast_noise.get_noise_2d(offset*5+scale*i,offset*5+scale*j)
-#				if h > 0 and randf() <  0.3 * h:
-#					var pos = this_block.position + Vector3.UP 
-#					var this_tree = tree.instantiate()
-#					this_tree.position = pos
-#					add_child(this_tree)
+			if this_block.position.y < 11:
+				(this_block.get_node("MeshInstance3D") as MeshInstance3D).set_surface_override_material(0, sand)
+			else:
+				var tree_scale = 0.4
+				var h = fast_noise.get_noise_2d(offset*5+scale*i,offset*5+scale*j)
+				if h > 0 and randf() <  0.3 * h:
+					var pos = this_block.position + Vector3.UP 
+					var this_tree = tree.instantiate()
+					this_tree.position = pos
+					add_child(this_tree)
+					
+					
 			add_child(this_block)
 	
 	print("Spawned ", num_cubes, " cubes")
