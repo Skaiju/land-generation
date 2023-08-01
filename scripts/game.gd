@@ -34,7 +34,8 @@ func gen_map():
 					amplitude * (drop_off(Vector2(i, j).length()) + 0.2 * noise_height)
 				),
 				j
-			)		
+			)
+					
 #			if this_block.position.y < 11:
 #				(this_block.get_node("MeshInstance3D") as MeshInstance3D).set_surface_override_material(0, sand)
 #			else:
