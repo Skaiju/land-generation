@@ -13,7 +13,7 @@ func gen_map():
 	
 	
 	var fast_noise = FastNoiseLite.new()
-	var size = 400
+	var size = 150
 	var offset = randi() % 1000
 	var scale: float = 1.2
 	var amplitude: float = 20
