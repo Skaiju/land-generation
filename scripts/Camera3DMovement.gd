@@ -16,6 +16,8 @@ var pitch_max: float = deg_to_rad(-50)
 var yaw: float
 var yaw_sensitivity: float = 0.01
 
+var smoothness: float = 0.05
+
 @onready var cam : Camera3D = $Camera3D
 @onready var target: Node3D = $"../"
 
@@ -28,12 +30,12 @@ func _ready():
 
 func _physics_process(delta):
 	# Update zoom
-	cam.position = lerp(cam.position, zoom_offset * Vector3.FORWARD, 0.05)
+	cam.position = lerp(cam.position, zoom_offset * Vector3.FORWARD, smoothness)
 	
 	# Update rotation
 	var lerp_rotation = rotation
-	lerp_rotation.x = lerp(rotation.x, pitch, 0.05)
-	lerp_rotation.y = lerp(rotation.y, yaw, 0.05)
+	lerp_rotation.x = lerp(rotation.x, pitch, smoothness)
+	lerp_rotation.y = lerp(rotation.y, yaw, smoothness)
 	set_rotation(lerp_rotation)
 	
 	# Update movement
