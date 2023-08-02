@@ -6,7 +6,7 @@ var move_sensitivity: float = 0.5
 var zoom_offset: float
 var zoom_sensitivity: float = 15
 var zoom_min: float = 20
-var zoom_max: float = 200
+var zoom_max: float = 2000
 
 var pitch: float
 var pitch_sensitivity: float = 0.005

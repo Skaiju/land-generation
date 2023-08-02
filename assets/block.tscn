@@ -6,6 +6,7 @@
 size = Vector3(0.997596, 0.39326, 0.993216)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lt5cs"]
+size = Vector3(1, 10, 1)
 
 [node name="Block" type="StaticBody3D"]
 
@@ -14,5 +15,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("BoxShape3D_uiq13")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
 mesh = SubResource("BoxMesh_lt5cs")
 surface_material_override/0 = ExtResource("1_adl22")
