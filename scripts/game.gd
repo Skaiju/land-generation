@@ -7,7 +7,6 @@ const sand:= preload("res://mats/ground_sand.tres")
 func _ready():
 	gen_map()
 
-
 func gen_map():
 	var num_cubes: int = 0
 	
@@ -15,7 +14,7 @@ func gen_map():
 	var fast_noise = FastNoiseLite.new()
 	var size = 350
 	var offset = randi() % 1000
-	var scale: float = 1.2
+	var scale: float = 0.8
 	var amplitude: float = 20
 	
 	for i in range(-size/2,size/2):
@@ -28,10 +27,13 @@ func gen_map():
 			var this_block = block.instantiate(); num_cubes+=1
 			var noise_height = fast_noise.get_noise_2d(offset + scale * i,offset + scale * j)
 			
+			# Steep mountains
+			noise_height = exp_height(noise_height)
+			
 			this_block.position = Vector3(
 				i,
 				mod_height(
-					amplitude * (drop_off(Vector2(i, j).length()) + 0.2 * noise_height)
+					amplitude * (drop_off(Vector2(i, j).length()) + 5 * noise_height)
 				),
 				j
 			)
@@ -41,6 +43,7 @@ func gen_map():
 			else:
 				var tree_scale = 0.4
 				var h = fast_noise.get_noise_2d(offset*5+scale*i,offset*5+scale*j)
+				
 				if h > 0 and randf() <  0.3 * h:
 					var pos = this_block.position
 					pos.y += this_block.scale.y/2
@@ -54,19 +57,21 @@ func gen_map():
 	print("Spawned ", num_cubes, " cubes")
 
 func drop_off(x: float):
-	var e = 2.71828
-	
-	return 1.0 / (1 + pow(e, (abs(x/18) - 8)))
+	return 1.0 / (1 + pow(2.71828, (abs(x/18) - 8)))
 	
 
 func mod_height(y: float, mod: int = 2, decimals: int = 1):
-	# y = -0.65
+	# Eg, y = -0.65
 	var s = sign(y) # s = -1	
 	y = int(decimals * 10 * abs(y))  # y = 6
 	y -= ((y as int) % mod) # y = 6 - 2 = 4
 	y *= decimals * 0.1 # y = 0.4
 	return s * y # -0.4
 	
+	
+func exp_height(x: float, scale: float = 2.3):
+	x = clampf(x, -1, 1)
+	return 2.71828 ** (x * scale - scale)
 	
 	
 	
