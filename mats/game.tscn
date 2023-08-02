@@ -14,7 +14,7 @@ albedo_color = Color(0, 0.14902, 1, 0.380392)
 script = ExtResource("1_lenqg")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 8.8, 0)
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -72.0968, 0)
 mesh = SubResource("PlaneMesh_8r34k")
 surface_material_override/0 = SubResource("StandardMaterial3D_mq445")
 

@@ -42,7 +42,8 @@ func gen_map():
 				var tree_scale = 0.4
 				var h = fast_noise.get_noise_2d(offset*5+scale*i,offset*5+scale*j)
 				if h > 0 and randf() <  0.3 * h:
-					var pos = this_block.position + Vector3.UP 
+					var pos = this_block.position
+					pos.y += this_block.scale.y/2
 					var this_tree = tree.instantiate()
 					this_tree.position = pos
 					add_child(this_tree)
