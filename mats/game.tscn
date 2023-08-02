@@ -1,33 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://b21424t0wmbk0"]
+[gd_scene load_steps=7 format=3 uid="uid://b21424t0wmbk0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_lenqg"]
 [ext_resource type="PackedScene" uid="uid://tjdu8yjgb0hr" path="res://assets/tank/tank.tscn" id="3_4icnk"]
 [ext_resource type="Script" path="res://scripts/Camera3DMovement.gd" id="3_42bbj"]
+[ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="3_jbrh6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8r34k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq445"]
 transparency = 1
 albedo_color = Color(0, 0, 1, 1)
-
-[sub_resource type="Gradient" id="Gradient_7dlu8"]
-interpolation_mode = 2
-colors = PackedColorArray(0, 0, 1, 1, 0.678431, 0.784314, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0hfrh"]
-gradient = SubResource("Gradient_7dlu8")
-fill_from = Vector2(0.00549451, 1)
-fill_to = Vector2(0, 0.675824)
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h8d8y"]
-panorama = SubResource("GradientTexture2D_0hfrh")
-
-[sub_resource type="Sky" id="Sky_sqwg8"]
-sky_material = SubResource("PanoramaSkyMaterial_h8d8y")
-
-[sub_resource type="Environment" id="Environment_brg2p"]
-background_mode = 2
-sky = SubResource("Sky_sqwg8")
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_lenqg")
@@ -48,7 +30,7 @@ script = ExtResource("3_42bbj")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.438232, 1.76874, -0.551025)
-environment = SubResource("Environment_brg2p")
+environment = ExtResource("3_jbrh6")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
 

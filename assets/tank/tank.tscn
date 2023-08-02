@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://tjdu8yjgb0hr"]
+[gd_scene load_steps=14 format=3 uid="uid://tjdu8yjgb0hr"]
 
 [ext_resource type="Script" path="res://assets/tank/controller.gd" id="1_16nv8"]
+[ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="2_f0uvq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cr4n"]
 resource_name = "Body"
@@ -162,10 +163,19 @@ transform = Transform3D(0.497838, 0, 0, 0, 0.995676, 0, 0, 0, 0.331892, 0, -0.68
 mesh = SubResource("ArrayMesh_3lvg0")
 skeleton = NodePath("")
 
+[node name="TPVCam" type="Camera3D" parent="Body/Turret"]
+transform = Transform3D(-1, 1.66811e-08, -8.58165e-08, 0, 0.981627, 0.190809, 8.74228e-08, 0.190809, -0.981627, 0, 6.28, -5.56)
+current = true
+
 [node name="Barrel" type="MeshInstance3D" parent="Body/Turret"]
 transform = Transform3D(0.511299, 0, 0, 0, 0.251121, 0, 0, 0, 0.251121, 0, 2.66016, 0.924512)
 mesh = SubResource("ArrayMesh_28vqq")
 skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="Body/Turret/Barrel"]
+transform = Transform3D(-1.9558, 0, -3.48131e-07, 0, 3.98215, 0, 1.70982e-07, 0, -3.98215, 0, 3.171, -0.963)
+environment = ExtResource("2_f0uvq")
+fov = 90.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12, 0)
