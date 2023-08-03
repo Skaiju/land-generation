@@ -7,28 +7,57 @@ const SENSITIVITY: float = 0.001
 
 var gravity = 9.8
 
-var is_fpv = false
+var cam_view = camera_state.NOT_FOCUSED
+
+enum camera_state
+{
+	NOT_FOCUSED,
+	FPV,
+	TPV
+}
 
 
 @onready var fpv_camera: Camera3D = $Body/Turret/Barrel/Camera3D
+@onready var tpv_camera: Camera3D = $Body/Turret/TPVCam
 @onready var turret: Node3D = $Body/Turret
 @onready var barrel: Node3D = $Body/Turret/Barrel
+
+func _ready():
+	cam_view += 1
+	print(cam_view)  
 
 func _input(event):
 	if Input.is_action_just_pressed("enter_fpv"):
 		change_view()
 			
-	if (is_fpv or true) and event is InputEventMouseMotion:
+	if (cam_view != camera_state.NOT_FOCUSED) and event is InputEventMouseMotion:
 		var delta = event.relative
 		turret.rotate_y(SENSITIVITY * -delta.x)
 		barrel.rotate_x(SENSITIVITY * delta.y)
 		barrel.rotation_degrees.x = clampf(barrel.rotation_degrees.x, -25, 0)
+
 		
 
 func change_view():
-	is_fpv = not is_fpv
-	fpv_camera.current = is_fpv
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if is_fpv else Input.MOUSE_MODE_VISIBLE
+	cam_view += 1
+	cam_view = cam_view % 3
+
+	
+	match cam_view:
+		camera_state.NOT_FOCUSED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			fpv_camera.current = false
+			tpv_camera.current = false
+		camera_state.FPV:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			fpv_camera.current = true
+			tpv_camera.current = false
+		camera_state.TPV:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			fpv_camera.current = false
+			tpv_camera.current = true
+		_:
+			print("default")
 		
 func _physics_process(delta):
 	# Add the gravity.

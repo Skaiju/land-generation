@@ -173,9 +173,10 @@ mesh = SubResource("ArrayMesh_28vqq")
 skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="Body/Turret/Barrel"]
-transform = Transform3D(-1.9558, 0, -3.48131e-07, 0, 3.98215, 0, 1.70982e-07, 0, -3.98215, 0, 3.171, -0.963)
+transform = Transform3D(-1.9558, 0, -6.01288e-07, 0, 3.98215, 0, 2.95318e-07, 0, -3.98215, 0, 3.171, -0.963)
+rotation_order = 0
 environment = ExtResource("2_f0uvq")
-fov = 90.0
+fov = 86.8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12, 0)
