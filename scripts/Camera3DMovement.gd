@@ -1,4 +1,4 @@
-extends Node3D
+class_name GlobalCamera extends Node3D
 
 @onready var target_node: Node3D = $".."
 var target_position: Vector3 :

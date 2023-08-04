@@ -8,15 +8,15 @@ func _ready():
 	gen_map()
 
 
-func gen_map(seed: int = 1):
-	seed(seed) # global seed
+func gen_map(_seed: int = 1):
+	seed(_seed) # global seed
 	
 	var num_cubes: int = 0
 	
 	var fast_noise = FastNoiseLite.new()
 	var radius:float = 100
 	var offset = randi() % 1000
-	var scale: float = 0.8
+	var noise_scale: float = 0.8
 	var amplitude: float = 20 * 10
 	var edge_amplitude: float = 0
 	
@@ -36,7 +36,7 @@ func gen_map(seed: int = 1):
 
 			# Randomise block height
 			var this_block = block.instantiate(); num_cubes+=1
-			var noise_height = fast_noise.get_noise_2d(offset + scale * i,offset + scale * j)
+			var noise_height = fast_noise.get_noise_2d(offset + noise_scale * i,offset + noise_scale * j)
 			
 			var height = amplitude * drop_off(this_radius/radius) * exp_height(noise_height)
 #			var height = amplitude * drop_off(this_radius/radius)
@@ -52,7 +52,7 @@ func gen_map(seed: int = 1):
 				(this_block.get_node("MeshInstance3D") as MeshInstance3D).set_surface_override_material(0, sand)
 			else:
 				var tree_scale = 0.4
-				var h = fast_noise.get_noise_2d(offset*5+scale*i,offset*5+scale*j)
+				var h = fast_noise.get_noise_2d(offset*5+noise_scale*i,offset*5+noise_scale*j)
 
 				if h > 0 and randf() <  0.3 * h:
 					var pos = this_block.position

@@ -29,6 +29,8 @@ func _enter_tree():
 func _ready():
 	if not is_multiplayer_authority(): return
 	
+	($"../../CameraPivot" as GlobalCamera).target_node = self
+	
 	position = randf_range(-1,1) * 50 * Vector3.ONE
 	position.y = 50
 
@@ -47,8 +49,7 @@ func _input(event):
 		
 
 func change_view():
-	cam_view += 1
-	cam_view = cam_view % 3
+	cam_view = (cam_view + 1) % 3
 
 	
 	match cam_view:
