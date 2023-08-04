@@ -21,7 +21,5 @@ func _on_player_connected(id: int = 1):
 	print("player connected: ", id)	
 	var tank = TANK_PREFAB.instantiate() as CharacterBody3D
 	tank.name = str(id)
-	tank.position = Vector3.ONE * randf() * 25
-	tank.position.y = 50
 	tank_container.add_child.call_deferred(tank)
 	

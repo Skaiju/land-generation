@@ -23,7 +23,18 @@ enum camera_state
 @onready var barrel: Node3D = $Body/Turret/Barrel
 
 
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
+
+func _ready():
+	if not is_multiplayer_authority(): return
+	
+	position = randf_range(-1,1) * 50 * Vector3.ONE
+	position.y = 50
+
 func _input(event):
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("enter_fpv"):
 		change_view()
 			
@@ -56,6 +67,8 @@ func change_view():
 
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
