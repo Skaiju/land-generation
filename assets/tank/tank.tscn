@@ -1,7 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://tjdu8yjgb0hr"]
+[gd_scene load_steps=17 format=3 uid="uid://tjdu8yjgb0hr"]
 
-[ext_resource type="Script" path="res://assets/tank/controller.gd" id="1_16nv8"]
-[ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="2_f0uvq"]
+[ext_resource type="Script" path="res://Assets/tank/controller.gd" id="1_77h5t"]
+[ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="2_r0r0r"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oqa0s"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cr4n"]
 resource_name = "Body"
@@ -68,6 +74,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m8cde")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wty4v"]
+albedo_color = Color(0.0156863, 0.121569, 0.0196078, 1)
+metallic = 0.81
+metallic_specular = 0.54
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sxah"]
+albedo_color = Color(0.0823529, 0.14902, 0, 1)
+metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qh8r"]
 resource_name = "Material.001"
@@ -151,12 +167,17 @@ shadow_mesh = SubResource("ArrayMesh_puyiy")
 radius = 2.369
 
 [node name="tank" type="CharacterBody3D"]
-script = ExtResource("1_16nv8")
+script = ExtResource("1_77h5t")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oqa0s")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.00869, 0, 0, 0, 1.00434, 0, 0, 0, 3.01303, 0, 0, 0)
 mesh = SubResource("ArrayMesh_41xsh")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_wty4v")
+surface_material_override/1 = SubResource("StandardMaterial3D_7sxah")
 
 [node name="Turret" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(0.497838, 0, 0, 0, 0.995676, 0, 0, 0, 0.331892, 0, -0.687985, 0)
@@ -165,6 +186,7 @@ skeleton = NodePath("")
 
 [node name="TPVCam" type="Camera3D" parent="Body/Turret"]
 transform = Transform3D(-1, 1.66811e-08, -8.58165e-08, 0, 0.981627, 0.190809, 8.74228e-08, 0.190809, -0.981627, 0, 6.28, -5.56)
+environment = ExtResource("2_r0r0r")
 
 [node name="Barrel" type="MeshInstance3D" parent="Body/Turret"]
 transform = Transform3D(0.511299, 0, 0, 0, 0.251121, 0, 0, 0, 0.251121, 0, 2.66016, 0.924512)
@@ -173,7 +195,7 @@ skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="Body/Turret/Barrel"]
 transform = Transform3D(-1.9558, 0, -3.48131e-07, 0, 3.98215, 0, 1.70982e-07, 0, -3.98215, 0, 3.171, -0.963)
-environment = ExtResource("2_f0uvq")
+environment = ExtResource("2_r0r0r")
 current = true
 fov = 90.0
 

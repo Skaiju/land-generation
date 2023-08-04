@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var target_node: Node3D = $"../tank"
+@onready var target_node: Node3D = $".."
 var target_position: Vector3 :
 	get: return get_target_position()
 

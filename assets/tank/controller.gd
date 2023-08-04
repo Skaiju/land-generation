@@ -53,9 +53,8 @@ func change_view():
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			fpv_camera.current = false
 			tpv_camera.current = true
-		_:
-			print("default")
-		
+
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
