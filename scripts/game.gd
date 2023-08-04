@@ -12,7 +12,7 @@ func _ready():
 		mpeer.connect("peer_connected", _on_player_connected)
 		_on_player_connected()
 	else:
-		mpeer.create_client("localhost", NetworkGlobals.PORT)
+		mpeer.create_client(NetworkGlobals.host_ip, NetworkGlobals.PORT)
 	
 	multiplayer.multiplayer_peer = mpeer
 
