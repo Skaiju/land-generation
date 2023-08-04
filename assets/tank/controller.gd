@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 
-const SPEED = 250
-const JUMP_VELOCITY = 5
+const SPEED = 1000
+const JUMP_VELOCITY = 20
 const SENSITIVITY: float = 0.001
 
 var gravity = 9.8
@@ -22,9 +22,6 @@ enum camera_state
 @onready var turret: Node3D = $Body/Turret
 @onready var barrel: Node3D = $Body/Turret/Barrel
 
-func _ready():
-	cam_view += 1
-	print(cam_view)  
 
 func _input(event):
 	if Input.is_action_just_pressed("enter_fpv"):

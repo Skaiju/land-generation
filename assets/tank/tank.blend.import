@@ -30,7 +30,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "meshes": {
-"tank-d3c0f98b993bece371d8aef4a485f14f_Cube": {
+"tank-93eb636a75b8fafae045b7bc4c5f7218_Cylinder": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -38,27 +38,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/tank-d3c0f98b993bece371d8aef4a485f14f_Cube.tres"
-},
-"tank-d3c0f98b993bece371d8aef4a485f14f_Cube_001": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
-"save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/tank-d3c0f98b993bece371d8aef4a485f14f_Cube_001.tres"
-},
-"tank-d3c0f98b993bece371d8aef4a485f14f_Cube_002": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
-"save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/tank-d3c0f98b993bece371d8aef4a485f14f_Cube_002.tres"
+"save_to_file/path": "res://assets/tank/shell.tres"
 }
 }
 }

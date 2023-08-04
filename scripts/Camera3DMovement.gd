@@ -5,8 +5,9 @@ var target_position: Vector3 :
 	get: return get_target_position()
 
 
+@onready var cam : Camera3D = $Camera3D
 
-var movement_offset: Vector3
+var movement_offset: Vector3 = Vector3.ZERO
 var move_sensitivity: float = 0.5
 
 
@@ -21,22 +22,16 @@ var pitch_sensitivity: float = 0.005
 var pitch_min: float = deg_to_rad(-10)
 var pitch_max: float = deg_to_rad(-50)
 
+
 var yaw: float
 var yaw_sensitivity: float = 0.01
+
 
 var smoothness: float = 0.05
 
 
 
-var is_focused = true
-
-
-
-@onready var cam : Camera3D = $Camera3D
-
-
 func _ready():
-	movement_offset = position
 	zoom_offset = cam.position.z
 	pitch = rotation.x
 	
@@ -56,8 +51,6 @@ func _physics_process(delta):
 
 
 func _input(event):
-	if not is_focused: return
-	
 	# Hanlde zoom
 	if event is InputEventMouseButton:
 		var delta_zoom = Input.get_axis("zoom_out", "zoom_in")
@@ -88,8 +81,7 @@ func _input(event):
 	# Handle focus
 	if Input.is_action_just_pressed("focus"):
 		movement_offset = Vector3.ZERO
-		
-	
+
 
 func get_target_position() -> Vector3:
 	return target_node.position + basis * movement_offset	
