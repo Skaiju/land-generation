@@ -22,13 +22,12 @@ enum camera_state
 @onready var turret: Node3D = $Body/Turret
 @onready var barrel: Node3D = $Body/Turret/Barrel
 
-
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
 	if not is_multiplayer_authority(): return
-	
+	change_view(true)
 	($"../../CameraPivot" as GlobalCamera).target_node = self
 	
 	position = randf_range(-1,1) * 50 * Vector3.ONE
@@ -48,10 +47,10 @@ func _input(event):
 
 		
 
-func change_view():
-	cam_view = (cam_view + 1) % 3
+func change_view(refresh: bool = false):
+	if not refresh:
+		cam_view = (cam_view + 1) % 3
 
-	
 	match cam_view:
 		camera_state.NOT_FOCUSED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
