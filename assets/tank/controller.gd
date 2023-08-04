@@ -70,21 +70,15 @@ func change_view():
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	
 	
 	var input_dir = Input.get_vector("move_right", "move_left", "move_forward", "move_back")
 	
-	# Hanlde rotate
 	if input_dir.x != 0: rotate_y(delta * sign(input_dir.x) * deg_to_rad(30))
 	
 	# Handle movement
