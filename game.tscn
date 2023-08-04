@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b21424t0wmbk0"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_h8dcq"]
+[ext_resource type="PackedScene" uid="uid://c8r8dkw2i758y" path="res://Assets/Map/Map.tscn" id="2_32ptb"]
+[ext_resource type="Script" path="res://scripts/Camera3DMovement.gd" id="2_fx1p0"]
+[ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="3_kr5tr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8r34k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq445"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_h8dcq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.812881, -0.00743699, -0.582382, 0.565873, -0.226634, 0.792732, -0.137883, -0.973952, -0.180018, 0, 316.222, 0)
+light_color = Color(1, 0.92549, 0.501961, 1)
+shadow_enabled = true
+shadow_opacity = 0.7
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 1.11, 0)
+mesh = SubResource("PlaneMesh_8r34k")
+surface_material_override/0 = SubResource("StandardMaterial3D_mq445")
+
+[node name="Map" parent="." instance=ExtResource("2_32ptb")]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+script = ExtResource("2_fx1p0")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.438232, 1.76874, -0.551025)
+environment = ExtResource("3_kr5tr")
+
+[node name="TankSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Assets/tank/tank.tscn")
+spawn_path = NodePath("../Tanks")
+
+[node name="Tanks" type="Node" parent="."]

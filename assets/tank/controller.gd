@@ -23,7 +23,20 @@ enum camera_state
 @onready var barrel: Node3D = $Body/Turret/Barrel
 
 
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
+
+func _ready():
+	if not is_multiplayer_authority(): return
+	
+	($"../../CameraPivot" as GlobalCamera).target_node = self
+	
+	position = randf_range(-1,1) * 50 * Vector3.ONE
+	position.y = 50
+
 func _input(event):
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("enter_fpv"):
 		change_view()
 			
@@ -36,8 +49,7 @@ func _input(event):
 		
 
 func change_view():
-	cam_view += 1
-	cam_view = cam_view % 3
+	cam_view = (cam_view + 1) % 3
 
 	
 	match cam_view:
@@ -53,25 +65,20 @@ func change_view():
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			fpv_camera.current = false
 			tpv_camera.current = true
-		_:
-			print("default")
-		
+
+
 func _physics_process(delta):
-	# Add the gravity.
+	if not is_multiplayer_authority(): return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	
 	
 	var input_dir = Input.get_vector("move_right", "move_left", "move_forward", "move_back")
 	
-	# Hanlde rotate
 	if input_dir.x != 0: rotate_y(delta * sign(input_dir.x) * deg_to_rad(30))
 	
 	# Handle movement

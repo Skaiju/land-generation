@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="land generation"
-run/main_scene="res://mats/game.tscn"
+run/main_scene="res://MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+NetworkGlobals="*res://scripts/NetworkGlobals.gd"
+
+[display]
+
+window/stretch/aspect="keep_height"
 
 [input]
 
