@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqqqhu7e28bqj"]
+[gd_scene load_steps=17 format=3 uid="uid://tjdu8yjgb0hr"]
 
 [ext_resource type="Script" path="res://Assets/tank/controller.gd" id="1_77h5t"]
 [ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="2_r0r0r"]
