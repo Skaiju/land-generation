@@ -17,10 +17,13 @@ enum camera_state
 }
 
 
-@onready var fpv_camera: Camera3D = $Body/Turret/Barrel/Camera3D
+@onready var fpv_camera: Camera3D = $Body/Turret/Barrel/FPVCam
 @onready var tpv_camera: Camera3D = $Body/Turret/TPVCam
 @onready var turret: Node3D = $Body/Turret
 @onready var barrel: Node3D = $Body/Turret/Barrel
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -44,7 +47,9 @@ func _input(event):
 		turret.rotate_y(SENSITIVITY * -delta.x)
 		barrel.rotate_x(SENSITIVITY * delta.y)
 		barrel.rotation_degrees.x = clampf(barrel.rotation_degrees.x, -25, 0)
-
+	
+	if Input.is_action_just_pressed("fire") and not animation_player.is_playing():
+		animation_player.play("CubeAction_001")
 		
 
 func change_view(refresh: bool = false):

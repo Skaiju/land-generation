@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b21424t0wmbk0"]
+[gd_scene load_steps=8 format=3 uid="uid://b21424t0wmbk0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_h8dcq"]
 [ext_resource type="PackedScene" uid="uid://c8r8dkw2i758y" path="res://Assets/Map/Map.tscn" id="2_32ptb"]
 [ext_resource type="Script" path="res://scripts/Camera3DMovement.gd" id="2_fx1p0"]
 [ext_resource type="Environment" uid="uid://cdwvf1ic6f808" path="res://mats/skybox.tres" id="3_kr5tr"]
+[ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://Assets/tank/tank.blend" id="5_iwrw3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8r34k"]
 
@@ -39,3 +40,6 @@ _spawnable_scenes = PackedStringArray("res://Assets/tank/tank.tscn")
 spawn_path = NodePath("../Tanks")
 
 [node name="Tanks" type="Node" parent="."]
+
+[node name="tank" parent="." instance=ExtResource("5_iwrw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01055, 3.15422, 1.22128)
