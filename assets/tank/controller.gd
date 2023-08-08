@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Tank extends CharacterBody3D
 
 
 const SPEED = 1000
@@ -23,11 +23,15 @@ var shoot_cooldown: float = 2
 var shoot_cooldown_timer: Timer
 var can_shoot = true
 
+var SHELL = preload("res://Assets/tank/shell.tscn")
+
 
 @onready var fpv_camera: Camera3D = $Body/Turret/Barrel/FPVCam
 @onready var tpv_camera: Camera3D = $Body/Turret/TPVCam
 @onready var turret: Node3D = $Body/Turret
 @onready var barrel: Node3D = $Body/Turret/Barrel
+@onready var firing_point: Node3D = $Body/Turret/Barrel/muzzle/MeshInstance3D
+
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
@@ -69,6 +73,10 @@ func _input(event):
 		can_shoot = false
 		shoot_cooldown_timer.start(shoot_cooldown)
 		animation_player.play("fire")
+		spawn_bullet.rpc(
+			firing_point.global_position,
+			barrel.global_transform.basis
+		)
 
 
 func change_view(refresh: bool = false):
@@ -114,3 +122,19 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+@rpc("authority", "call_local")
+func spawn_bullet(spawn_pos: Vector3, spawn_basis: Basis):
+	print("spawning from:", multiplayer.get_unique_id())
+	var bullet = SHELL.instantiate()
+	
+	$"../../Bullets".add_child(bullet)
+	bullet.position = spawn_pos
+	bullet.transform.basis = spawn_basis
+
+func take_damage(damage: float = 1):
+	respawn()
+	
+func respawn():
+	position = randf_range(-10, 10) * Vector3(1, 20, 1)

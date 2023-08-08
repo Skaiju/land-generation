@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://cmsc7fkqt1hdw"]
 
 [ext_resource type="Script" path="res://Assets/tank/controller.gd" id="1_77h5t"]
-[ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://assets/tank/tank.blend" id="1_vucca"]
+[ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://Assets/tank/tank.blend" id="1_vucca"]
 [ext_resource type="Texture2D" uid="uid://c53qyyduaby25" path="res://mats/muzzleflash.png" id="3_eiqv6"]
-[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://assets/tank/tank_fire.wav" id="3_xlmf4"]
+[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://Assets/tank/tank_fire.wav" id="3_xlmf4"]
 [ext_resource type="ArrayMesh" uid="uid://nrlwynmtvkju" path="res://mats/muzzleflash.obj" id="4_63e0y"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fn1bn"]
@@ -127,7 +127,7 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/8/type = "value"
@@ -271,8 +271,12 @@ shape = SubResource("SphereShape3D_bdxsv")
 [node name="TPVCam" type="Camera3D" parent="Body/Turret" index="0"]
 transform = Transform3D(-1, 2.91823e-08, -8.24083e-08, 0, 0.942641, 0.333807, 8.74228e-08, 0.333807, -0.942641, 0, 8.95, -15.194)
 
+[node name="Barrel" parent="Body/Turret" index="1"]
+transform = Transform3D(0.471299, 0, 0, 0, 0.251121, 0, 0, 0, 0.251121, 0, 2.66016, 0.464512)
+
 [node name="FPVCam" type="Camera3D" parent="Body/Turret/Barrel" index="0"]
 transform = Transform3D(-2.1218, 0, -3.4813e-07, 0, 3.98215, 0, 1.85493e-07, 0, -3.98214, 0, 5.222, -3.218)
+current = true
 
 [node name="muzzle" parent="Body/Turret/Barrel" index="1"]
 transform = Transform3D(0.664973, 0, 0, 0, 0.716787, 0, 0, 0, 3.98215, 0, 0, 12.1057)
@@ -280,6 +284,7 @@ transform = Transform3D(0.664973, 0, 0, 0, 0.716787, 0, 0, 0, 3.98215, 0, 0, 12.
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Turret/Barrel/muzzle" index="0"]
 transform = Transform3D(-3.465, 0, -6.79481e-08, 0, 2.505, 0, 5.232e-07, 0, -0.45, 0, 0, 2.42825)
 material_override = SubResource("StandardMaterial3D_0pdbx")
+transparency = 1.0
 mesh = ExtResource("4_63e0y")
 
 [node name="Shell" parent="." index="3"]
