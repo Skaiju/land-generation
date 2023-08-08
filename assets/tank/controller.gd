@@ -52,7 +52,8 @@ func _input(event):
 	
 	if Input.is_action_pressed("fire") and not animation_player.is_playing():
 		animation_player.play("CubeAction_001")
-		audio_player.play()
+		play_fire_sound.rpc()
+		
 		
 
 func change_view(refresh: bool = false):
@@ -98,3 +99,9 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+
+@rpc("any_peer", "call_local")
+func play_fire_sound():
+	audio_player.play()

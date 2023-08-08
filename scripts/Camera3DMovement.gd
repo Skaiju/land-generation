@@ -83,4 +83,4 @@ func _input(event):
 
 
 func get_target_position() -> Vector3:
-	return target_node.position + basis * movement_offset	
+	return target_node.position + basis * movement_offset

@@ -30,6 +30,7 @@ properties/4/watch = false
 radius = 2.881
 
 [node name="tank" instance=ExtResource("1_vucca")]
+floor_max_angle = 1.5708
 script = ExtResource("1_77h5t")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
