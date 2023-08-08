@@ -24,7 +24,6 @@ var shoot_cooldown_timer: Timer
 var can_shoot = true
 
 
-
 @onready var fpv_camera: Camera3D = $Body/Turret/Barrel/FPVCam
 @onready var tpv_camera: Camera3D = $Body/Turret/TPVCam
 @onready var turret: Node3D = $Body/Turret
@@ -70,6 +69,7 @@ func _input(event):
 		can_shoot = false
 		shoot_cooldown_timer.start(shoot_cooldown)
 		animation_player.play("fire")
+
 
 func change_view(refresh: bool = false):
 	if not refresh:
