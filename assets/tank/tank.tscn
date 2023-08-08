@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmsc7fkqt1hdw"]
+[gd_scene load_steps=6 format=3 uid="uid://cmsc7fkqt1hdw"]
 
 [ext_resource type="Script" path="res://Assets/tank/controller.gd" id="1_77h5t"]
 [ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://Assets/tank/tank.blend" id="1_vucca"]
+[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://Assets/tank/tank_fire.wav" id="3_xlmf4"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fn1bn"]
 properties/0/path = NodePath(".:position")
@@ -26,7 +27,7 @@ properties/4/sync = true
 properties/4/watch = false
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bdxsv"]
-radius = 1.294
+radius = 2.881
 
 [node name="tank" instance=ExtResource("1_vucca")]
 script = ExtResource("1_77h5t")
@@ -35,13 +36,26 @@ script = ExtResource("1_77h5t")
 replication_config = SubResource("SceneReplicationConfig_fn1bn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56035, 0)
 shape = SubResource("SphereShape3D_bdxsv")
 
 [node name="TPVCam" type="Camera3D" parent="Body/Turret" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968253, 0)
+transform = Transform3D(-1, 2.91823e-08, -8.24083e-08, 0, 0.942641, 0.333807, 8.74228e-08, 0.333807, -0.942641, 0, 8.95, -15.194)
 
 [node name="FPVCam" type="Camera3D" parent="Body/Turret/Barrel" index="0"]
-transform = Transform3D(2.1218, 0, 0, 0, 3.98215, 0, 0, 0, 3.98214, 0, -6.73742, -1.84975)
+transform = Transform3D(-2.1218, 0, -3.4813e-07, 0, 3.98215, 0, 1.85493e-07, 0, -3.98214, 0, 5.222, -3.218)
 
 [node name="Cube" parent="Body/Turret/Barrel" index="1"]
 transform = Transform3D(0.664973, 0, 0, 0, 0.716787, 0, 0, 0, 3.98215, 5.17697e-23, 4.76837e-07, 11.0505)
+
+[node name="Plane_002" parent="Body/Turret/Barrel/Cube" index="0"]
+visible = false
+
+[node name="Plane_003" parent="Body/Turret/Barrel/Cube" index="1"]
+visible = false
+
+[node name="Shell" parent="." index="3"]
+visible = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="5"]
+stream = ExtResource("3_xlmf4")

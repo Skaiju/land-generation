@@ -23,6 +23,8 @@ enum camera_state
 @onready var barrel: Node3D = $Body/Turret/Barrel
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 
 
 func _enter_tree():
@@ -48,8 +50,9 @@ func _input(event):
 		barrel.rotate_x(SENSITIVITY * delta.y)
 		barrel.rotation_degrees.x = clampf(barrel.rotation_degrees.x, -25, 0)
 	
-	if Input.is_action_just_pressed("fire") and not animation_player.is_playing():
+	if Input.is_action_pressed("fire") and not animation_player.is_playing():
 		animation_player.play("CubeAction_001")
+		audio_player.play()
 		
 
 func change_view(refresh: bool = false):

@@ -35,7 +35,6 @@ func _ready():
 	zoom_offset = cam.position.z
 	pitch = rotation.x
 	
-
 func _physics_process(delta):
 	# Update CameraPivot position to focused object
 	position = lerp(position, target_position, smoothness)
