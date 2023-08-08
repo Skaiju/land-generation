@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmsc7fkqt1hdw"]
+[gd_scene load_steps=12 format=3 uid="uid://cmsc7fkqt1hdw"]
 
 [ext_resource type="Script" path="res://Assets/tank/controller.gd" id="1_77h5t"]
 [ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://Assets/tank/tank.blend" id="1_vucca"]
-[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://Assets/tank/tank_fire.wav" id="3_xlmf4"]
+[ext_resource type="Texture2D" uid="uid://c53qyyduaby25" path="res://mats/muzzleflash.png" id="3_eiqv6"]
+[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://assets/tank/tank_fire.wav" id="3_xlmf4"]
+[ext_resource type="ArrayMesh" uid="uid://nrlwynmtvkju" path="res://mats/muzzleflash.obj" id="4_63e0y"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fn1bn"]
 properties/0/path = NodePath(".:position")
@@ -29,6 +31,229 @@ properties/4/watch = false
 [sub_resource type="SphereShape3D" id="SphereShape3D_bdxsv"]
 radius = 2.881
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pdbx"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("3_eiqv6")
+
+[sub_resource type="Animation" id="Animation_30ofd"]
+resource_name = "fire"
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Body/Turret/Barrel/muzzle:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25, 0.9)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Body/Turret/Barrel/muzzle:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25, 0.9)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Turret/Barrel/muzzle:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(12.1057, -0.25, 0, 0.25, 0, 9.54688, -0.25, 0, 0.25, 0, 12.1057, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25, 0.9)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Turret/Barrel/muzzle:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.664973, -0.25, 0, 0.25, 0, 0.59, -0.25, 0, 0.25, 0, 0.664973, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.35, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Turret/Barrel/muzzle:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.716787, -0.25, 0, 0.25, 0, 0.636, -0.25, 0, 0.25, 0, 0.716787, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.35, 0.9)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Turret/Barrel/muzzle:scale:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.98215, -0.25, 0, 0.25, 0, 3.533, -0.25, 0, 0.25, 0, 3.98215, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.35, 0.9)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Turret/Barrel/muzzle/MeshInstance3D:transparency")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(102.5, -0.25, 0, 0, -163, -46.5, -0.05, 3, 0.05, 4, 100.5, -0.1, 1, 0.1, -1),
+"times": PackedFloat32Array(0.05, 0.15, 0.25)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/Turret/Barrel/muzzle/MeshInstance3D:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.465, 2.505, 0.45), Vector3(3.465, 2.505, 1.115)]
+}
+
+[sub_resource type="Animation" id="Animation_83mkx"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Turret/Barrel/muzzle:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Turret/Barrel/muzzle:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Turret/Barrel/muzzle:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(12.1057, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Turret/Barrel/muzzle:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.664973, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Turret/Barrel/muzzle:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.716787, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Turret/Barrel/muzzle:scale:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.98215, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Turret/Barrel/muzzle/MeshInstance3D:transparency")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/Turret/Barrel/muzzle/MeshInstance3D:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.465, 2.505, 0.45)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j6r1a"]
+_data = {
+"RESET": SubResource("Animation_83mkx"),
+"fire": SubResource("Animation_30ofd")
+}
+
 [node name="tank" instance=ExtResource("1_vucca")]
 floor_max_angle = 1.5708
 script = ExtResource("1_77h5t")
@@ -46,17 +271,18 @@ transform = Transform3D(-1, 2.91823e-08, -8.24083e-08, 0, 0.942641, 0.333807, 8.
 [node name="FPVCam" type="Camera3D" parent="Body/Turret/Barrel" index="0"]
 transform = Transform3D(-2.1218, 0, -3.4813e-07, 0, 3.98215, 0, 1.85493e-07, 0, -3.98214, 0, 5.222, -3.218)
 
-[node name="Cube" parent="Body/Turret/Barrel" index="1"]
-transform = Transform3D(0.664973, 0, 0, 0, 0.716787, 0, 0, 0, 3.98215, 5.17697e-23, 4.76837e-07, 11.0505)
-
-[node name="Plane_002" parent="Body/Turret/Barrel/Cube" index="0"]
-visible = false
-
-[node name="Plane_003" parent="Body/Turret/Barrel/Cube" index="1"]
-visible = false
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Turret/Barrel/muzzle" index="0"]
+transform = Transform3D(-3.465, 0, -6.79481e-08, 0, 2.505, 0, 5.232e-07, 0, -0.45, 0, 0, 2.42825)
+material_override = SubResource("StandardMaterial3D_0pdbx")
+mesh = ExtResource("4_63e0y")
 
 [node name="Shell" parent="." index="3"]
 visible = false
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="5"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="4"]
 stream = ExtResource("3_xlmf4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_j6r1a")
+}
