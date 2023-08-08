@@ -1,16 +1,14 @@
-extends Node3D
+class_name MapGenerator extends Node3D
 
 const block:= preload("res://assets/block.tscn")
 const tree:= preload("res://assets/tree.tscn")
 const sand:= preload("res://mats/ground_sand.tres")
 
-func _ready():
-	gen_map()
+signal done_generating
 
 
 func gen_map(_seed: int = 1):
-	seed(_seed) # global seed
-	
+	seed(_seed) # global seed	
 	var num_cubes: int = 0
 	
 	var fast_noise = FastNoiseLite.new()
@@ -65,6 +63,7 @@ func gen_map(_seed: int = 1):
 			add_child(this_block)
 	
 	print("Spawned ", num_cubes, " cubes")
+	done_generating.emit()
 
 
 func drop_off(radius: float, cliff_steep: float = 32, platuea: float = 28):
