@@ -4,10 +4,10 @@ const block:= preload("res://assets/block.tscn")
 const tree:= preload("res://assets/tree.tscn")
 const sand:= preload("res://mats/ground_sand.tres")
 
-signal done_generating
+func _ready():
+	gen_map()
 
-
-func gen_map(_seed: int = 1):
+func gen_map(_seed: int = 10):
 	seed(_seed) # global seed	
 	var num_cubes: int = 0
 	
@@ -63,7 +63,6 @@ func gen_map(_seed: int = 1):
 			add_child(this_block)
 	
 	print("Spawned ", num_cubes, " cubes")
-	done_generating.emit()
 
 
 func drop_off(radius: float, cliff_steep: float = 32, platuea: float = 28):

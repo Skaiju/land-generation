@@ -17,6 +17,14 @@ enum camera_state
 }
 
 
+
+
+var shoot_cooldown: float = 2
+var shoot_cooldown_timer: Timer
+var can_shoot = true
+
+
+
 @onready var fpv_camera: Camera3D = $Body/Turret/Barrel/FPVCam
 @onready var tpv_camera: Camera3D = $Body/Turret/TPVCam
 @onready var turret: Node3D = $Body/Turret
@@ -32,11 +40,19 @@ func _enter_tree():
 
 func _ready():
 	if not is_multiplayer_authority(): return
+	
+	
 	change_view(true)
 	($"../../CameraPivot" as GlobalCamera).target_node = self
 	
 	position = randf_range(-1,1) * 50 * Vector3.ONE
 	position.y = 50
+
+
+	shoot_cooldown_timer = Timer.new()
+	shoot_cooldown_timer.one_shot = true
+	add_child(shoot_cooldown_timer)
+	shoot_cooldown_timer.timeout.connect(func(): can_shoot = true)
 
 func _input(event):
 	if not is_multiplayer_authority(): return
@@ -50,11 +66,10 @@ func _input(event):
 		barrel.rotate_x(SENSITIVITY * delta.y)
 		barrel.rotation_degrees.x = clampf(barrel.rotation_degrees.x, -25, 0)
 	
-	if Input.is_action_pressed("fire") and not animation_player.is_playing():
-		animation_player.play("CubeAction_001")
-		play_fire_sound.rpc()
-		
-		
+	if Input.is_action_pressed("fire") and can_shoot:
+		can_shoot = false
+		shoot_cooldown_timer.start(shoot_cooldown)
+		animation_player.play("fire")
 
 func change_view(refresh: bool = false):
 	if not refresh:
@@ -99,9 +114,3 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-
-
-@rpc("any_peer", "call_local")
-func play_fire_sound():
-	audio_player.play()

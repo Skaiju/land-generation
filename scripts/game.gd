@@ -7,9 +7,6 @@ var mpeer = ENetMultiplayerPeer.new()
 
 
 func _ready():
-	($Map as MapGenerator).gen_map()
-	await ($Map as MapGenerator).done_generating
-	
 	if NetworkGlobals.is_server:
 		mpeer.create_server(NetworkGlobals.PORT)
 		mpeer.connect("peer_connected", _on_player_connected)
