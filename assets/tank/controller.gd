@@ -102,7 +102,7 @@ func _physics_process(delta):
 	
 	var input_dir = Input.get_vector("move_right", "move_left", "move_forward", "move_back")
 	
-	if input_dir.x != 0: rotate_y(delta * sign(input_dir.x) * deg_to_rad(30))
+	if input_dir.x != 0: rotate_y(delta * sign(input_dir.x) * deg_to_rad(40))
 	
 	# Handle movement
 	if input_dir.y != 0:

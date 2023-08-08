@@ -1,4 +1,4 @@
-class_name MapGenerator extends Node3D
+extends Node3D
 
 const block:= preload("res://assets/block.tscn")
 const tree:= preload("res://assets/tree.tscn")

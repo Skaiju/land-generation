@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmsc7fkqt1hdw"]
+[gd_scene load_steps=13 format=3 uid="uid://cmsc7fkqt1hdw"]
 
 [ext_resource type="Script" path="res://Assets/tank/controller.gd" id="1_77h5t"]
-[ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://Assets/tank/tank.blend" id="1_vucca"]
+[ext_resource type="PackedScene" uid="uid://ooqipi007kwv" path="res://assets/tank/tank.blend" id="1_vucca"]
 [ext_resource type="Texture2D" uid="uid://c53qyyduaby25" path="res://mats/muzzleflash.png" id="3_eiqv6"]
-[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://Assets/tank/tank_fire.wav" id="3_xlmf4"]
+[ext_resource type="AudioStream" uid="uid://nhvl450piv05" path="res://assets/tank/tank_fire.wav" id="3_xlmf4"]
 [ext_resource type="ArrayMesh" uid="uid://nrlwynmtvkju" path="res://mats/muzzleflash.obj" id="4_63e0y"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fn1bn"]
@@ -254,6 +254,9 @@ _data = {
 "fire": SubResource("Animation_30ofd")
 }
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2bob5"]
+points = PackedVector3Array(-0.812277, 0.768625, 0.711463, -1.16691, -1.34632, 0.07541, -1.16371, -1.34296, 0.719915, 1.15189, -1.34632, 0.07541, -0.975564, 0.40148, -0.987513, 0.990874, 0.397383, 0.979402, 0.699434, 1.09304, -0.6502, 1.15848, -1.23828, -0.879776, -1.1735, -1.23828, -0.879776, 1.15333, -1.30944, 0.760677, -1.15888, -0.1299, 1.05688, 1.19032, -0.0516615, -0.983294, -0.70252, 1.0724, 0.488452, -0.705745, 1.07797, -0.641727, 0.687501, 1.0724, 0.488452, 1.14386, -0.1299, 1.05688, -1.20534, -0.0516615, -0.983294, -0.812549, -1.34727, -0.826356, -0.812549, -1.15094, 0.861976, -1.20534, -0.0516615, 0.901626, 0.990874, 0.397383, -0.979609, -0.971429, 0.39921, 0.982667, 1.19032, -0.0516615, 0.901626, -0.812549, -1.26879, -0.904825, 1.15078, -1.30685, -0.797834, 1.1336, -0.279437, 1.0478, 1.13962, -0.393087, -0.977856, -1.15218, -0.279903, 1.05095, -1.15766, -0.39378, -0.980529, -0.812549, -1.34727, 0.783715, 1.14869, -1.34296, 0.719915, -1.16835, -1.30944, 0.760677)
+
 [node name="tank" instance=ExtResource("1_vucca")]
 floor_max_angle = 1.5708
 script = ExtResource("1_77h5t")
@@ -261,7 +264,7 @@ script = ExtResource("1_77h5t")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_fn1bn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+[node name="Sphere" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56035, 0)
 shape = SubResource("SphereShape3D_bdxsv")
 
@@ -289,3 +292,9 @@ stream = ExtResource("3_xlmf4")
 libraries = {
 "": SubResource("AnimationLibrary_j6r1a")
 }
+
+[node name="Hit box" type="Area3D" parent="." index="6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hit box" index="0"]
+transform = Transform3D(1.64, 0, 0, 0, 1, 0, 0, 0, 2.85, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2bob5")
